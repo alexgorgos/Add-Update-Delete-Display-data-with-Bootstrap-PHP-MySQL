@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Display/Add/Edit/Remove db fields</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <script src="scripts.js"></script>
+    </head>
+    <body>
+
+        <div class="container-fluid">
+            <div id="sources">
+                <div id="loading">
+                    <div class="loading_image">
+                        <img src="Loading_icon.gif"/>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Source name</th>
+                            <th>Source url</th>
+                            <th>Source type</th>
+                            <th class='text-center'>Edit source</th>
+                            <th class='text-center'>Delete source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-success" id="add-source" data-toggle="modal" data-target="#addSourceModal"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add source</button>
+            </div>
+            
+       </div>
+        
+        <!-- addSourceModal -->
+        <div id="addSourceModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add source</h4>
+              </div>
+              <div class="modal-body">
+                  <form class="source">
+                        <div class="form-group">
+                            <label for="source-name">Source name:</label>
+                            <input type="url" name="source-name" class="form-control" id="source-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="source-url">Source url:</label>
+                            <input type="url" name="source-url" class="form-control" id="source-url">
+                        </div>
+                        <div class="form-group">
+                            <label for="source-type">Source type:</label>
+                            <select name="source-type" class="form-control" id="source-type">
+                                <option value=""></option>
+                                <option value="xml">XML</option>
+                                <option value="csv">CSV</option>
+                                <option value="json">JSON</option>
+                            </select>
+                        </div>
+                        <div id="error-source" class="alert alert-danger" style="display: none">
+                            <ul></ul>
+                        </div>
+                    </form>
+                    
+                    <div id="add-response"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="addSource" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save source</button>
+                <button type="button" id="cancelSource" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        
+        <!-- Modal -->
+        <div id="deleteSourceModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete source</h4>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to delete this source?</p>
+                  <div id="add-response-deleted"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="deleteSource" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete source</button>
+                <button type="button" id="cancelDelete" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        
+        <!-- editSourceModal -->
+        <div id="editSourceModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit source</h4>
+              </div>
+              <div class="modal-body">
+                  <form class="editSource">
+                        <div class="form-group">
+                            <label for="source-edit-name">Source name:</label>
+                            <input type="url" name="source-edit-name" class="form-control" id="source-edit-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="source-edit-url">Source url:</label>
+                            <input type="url" name="source-edit-url" class="form-control" id="source-edit-url">
+                        </div>
+                        <div class="form-group">
+                            <label for="source-edit-type">Source type:</label>
+                            <select name="source-edit-type" class="form-control" id="source-edit-type">
+                                <option value=""></option>
+                                <option value="xml">XML</option>
+                                <option value="csv">CSV</option>
+                                <option value="json">JSON</option>
+                            </select>
+                        </div>
+                        <div id="error-edit-source" class="alert alert-danger" style="display: none">
+                            <ul></ul>
+                        </div>
+                    </form>
+                    
+                    <div id="add-edit-response"></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="editSource" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Edit source</button>
+                <button type="button" id="cancelEditSource" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+    </body>
+</html>
