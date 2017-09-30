@@ -1,2 +1,2 @@
 
-Add/Update/Delete/Display data dynamically with Bootstrap, PHP, MYSQL
+Add/Update/Delete/Display data dynamically with HTLM, CSS, Javascript, Bootstrap, PHP, MYSQL
